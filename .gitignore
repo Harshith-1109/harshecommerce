@@ -1,0 +1,14 @@
+# Dependencies (modules installed via npm)
+node_modules/
+
+# Environment variables containing sensitive keys/passwords
+.env
+.env.local
+
+# Compiled build folders
+dist/
+build/
+
+# System files and debug logs
+.DS_Store
+npm-debug.log*
