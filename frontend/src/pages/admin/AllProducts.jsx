@@ -2,7 +2,7 @@ import { Link } from "react-router"
 import moment from "moment";
 import { useAllProductsQuery } from "../../redux/api/productApiSlice";
 import AdminMenu from "./AdminMenu";
-import Loader from "../../components/loader";
+import Loader from "../../components/Loader";
 
 
 
