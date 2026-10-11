@@ -1,12 +1,19 @@
-import path from 'path'
-import express from 'express'
-import multer from 'multer'
+import path from 'path';
+import express from 'express';
+import multer from 'multer';
+import fs from 'fs';
 
-const router = express.Router()
+const router = express.Router();
+
+// 🔑 Ensure the uploads directory exists on startup/runtime
+const uploadDir = path.join(path.resolve(), 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/");
+        cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
         const extname = path.extname(file.originalname);
@@ -15,8 +22,6 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    // Checks if the uploaded file's MIME type begins with "image/" 
-    // This dynamically allows png, jpg, webp, avif, gif, heic, svg, etc.
     if (file.mimetype.startsWith('image/')) {
         cb(null, true);
     } else {
@@ -33,11 +38,11 @@ router.post('/', (req, res) => {
             return res.status(400).send({ message: err.message });
         } 
         
-        // 🔑 FIX 2: Fixed the if/else-if/else branching and brace layout
         if (req.file) {
+            // 🔑 Return a clean relative path starting with /uploads/
             return res.status(200).send({
                 message: "Image uploaded successfully",
-                image: `/${req.file.path}`,
+                image: `/uploads/${req.file.filename}`,
             });
         } else {
             return res.status(400).send({ message: "No image file provided" });
