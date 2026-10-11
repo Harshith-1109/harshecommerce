@@ -7,7 +7,7 @@ import {
     useUploadProductImageMutation 
 } from "../../redux/api/productApiSlice"
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants";
 import AdminMenu from "./AdminMenu";
 
 const ProductList = () => {

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import moment from "moment";
 import { useAllProductsQuery } from "../../redux/api/productApiSlice";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants";
 import AdminMenu from "./AdminMenu";
 import Loader from "../../components/Loader";
 

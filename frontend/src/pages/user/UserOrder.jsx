@@ -2,7 +2,7 @@ import Message from "../../components/Message"
 import Loader from "../../components/Loader"
 import { Link } from "react-router"
 import { useGetMyOrdersQuery } from "../../redux/api/orderApiSlice"
-import { BASE_URL } from "../../redux/constants"
+import { BASE_URL } from "../../redux/features/constants"
 
 const UserOrder = () => {
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
