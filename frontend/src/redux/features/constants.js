@@ -1,7 +1,10 @@
 // frontend/src/redux/constants.js
 export const BASE_URL = import.meta.env.PROD 
   ? "https://harshecommerce-backend.onrender.com" 
-  : ""; // Uses Vite proxy locally, live backend URL in production
+  : ""; // U
+  //ses Vite proxy locally, live backend URL in production
+
+  src={product.image.startsWith('http') ? product.image : `${BASE_URL}/${product.image.replace(/^\/+/, '')}`}
 
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
