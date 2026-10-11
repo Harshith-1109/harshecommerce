@@ -9,7 +9,7 @@ import {
     useDeleteProductMutation,
 } from "../../redux/api/productApiSlice"
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants";
 
 const ProductUpdate = () => {
     const params = useParams()

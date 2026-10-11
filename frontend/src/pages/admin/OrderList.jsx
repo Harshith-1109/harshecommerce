@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants";
 
 const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants";
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();

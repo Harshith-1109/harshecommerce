@@ -20,7 +20,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants"; 
 
 const ProductDetails = () => {
   const { id: productId } = useParams();

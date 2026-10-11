@@ -13,7 +13,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
-import { BASE_URL } from "../../redux/constants";
+import { BASE_URL } from "../../redux/features/constants"; 
 
 const Slider = SlickSlider.default || SlickSlider;
 

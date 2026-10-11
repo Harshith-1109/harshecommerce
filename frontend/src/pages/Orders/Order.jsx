@@ -9,7 +9,7 @@ import { useDeliverOrderMutation,
     useGetPaypalClientIdQuery,
     usePayOrderMutation,
 } from "../../redux/api/orderApiSlice"
-import { BASE_URL } from "../../redux/constants"
+import { BASE_URL } from "../../redux/features/constants" 
 import { useSelector } from "react-redux"
 
 const Order = () => {
