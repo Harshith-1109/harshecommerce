@@ -1,5 +1,8 @@
-export const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://your-backend-url.onrender.com' : '';
-// or whatever your specific BASE_URL setup is
+// frontend/src/redux/constants.js
+export const BASE_URL = import.meta.env.PROD 
+  ? "https://harshecommerce-backend.onrender.com" 
+  : ""; // Uses Vite proxy locally, live backend URL in production
+
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
 export const PRODUCT_URL = '/api/products';
