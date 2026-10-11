@@ -39,14 +39,10 @@ const ProductUpdate = () => {
             setName(productData.name || "")
             setDescription(productData.description || "")
             setPrice(productData.price || "")
-            // Safely handle category whether it's an ID string or an object
             setCategory(productData.category?._id || productData.category || "")
             setBrand(productData.brand || "")
-            
-            // Check both common variations for stock quantity
             setStock(productData.countInStock ?? productData.stock ?? "")
             setQuantity(productData.quantity || "")
-            
             setImage(productData.image || "")
             setImageUrl(productData.image || "")
         }
@@ -117,7 +113,11 @@ const ProductUpdate = () => {
                     {imageUrl && (
                         <div className="text-center mb-3">
                             <img 
-                                src={imageUrl.startsWith('http') ? imageUrl : `${BASE_URL}${imageUrl}`} 
+                                src={
+                                    imageUrl?.startsWith('http') 
+                                        ? imageUrl 
+                                        : `${BASE_URL}/${imageUrl?.replace(/^\/+/, '')}`
+                                } 
                                 alt="product" 
                                 className="block mx-auto max-h-[200px]" 
                             />

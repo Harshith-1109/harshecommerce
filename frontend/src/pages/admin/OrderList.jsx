@@ -37,9 +37,9 @@ const OrderList = () => {
                     {order.orderItems && order.orderItems.length > 0 && (
                       <img
                         src={
-                          BASE_URL
-                            ? `${BASE_URL}${order.orderItems[0].image}`
-                            : order.orderItems[0].image
+                          order.orderItems[0].image?.startsWith('http')
+                            ? order.orderItems[0].image
+                            : `${BASE_URL}/${order.orderItems[0].image?.replace(/^\/+/, '')}`
                         }
                         alt={order.orderItems[0].name}
                         className="w-16 h-16 object-cover"

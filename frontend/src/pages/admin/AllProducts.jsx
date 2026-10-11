@@ -33,7 +33,7 @@ const AllProducts = () => {
                             >
                                 <div className="flex">
                                     <img
-                                        src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
+                                        src={product.image?.startsWith('http') ? product.image : `${BASE_URL}/${product.image?.replace(/^\/+/, '')}`}
                                         alt={product.name}
                                         className="w-[10rem] object-cover"
                                     />

@@ -23,7 +23,11 @@ const ProductCard = ({ p }) => {
           </span>
           <img
             className="cursor-pointer w-full h-[180px] object-cover rounded-t-xl"
-            src={BASE_URL ? `${BASE_URL}${p?.image}` : p?.image}
+            src={
+              p?.image?.startsWith('http')
+                ? p.image
+                : `${BASE_URL}/${p?.image?.replace(/^\/+/, '')}`
+            }
             alt={p?.name}
           />
         </Link>

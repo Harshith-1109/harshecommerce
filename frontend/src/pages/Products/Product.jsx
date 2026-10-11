@@ -7,7 +7,11 @@ const Product = ({ product }) => {
     <div className="w-[30rem] ml-[2rem] p-3 relative">
       <div className="relative">
         <img
-          src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
+          src={
+            product.image?.startsWith('http')
+              ? product.image
+              : `${BASE_URL}/${product.image?.replace(/^\/+/, '')}`
+          }
           alt={product.name}
           className="w-[30rem] rounded"
         />

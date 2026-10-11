@@ -140,7 +140,11 @@ const Order = () => {
                                             <tr key={index} className="border-b">
                                                 <td className="p-2">
                                                     <img
-                                                        src={BASE_URL ? `${BASE_URL}${item.image}` : item.image}
+                                                        src={
+                                                            item.image?.startsWith('http')
+                                                                ? item.image
+                                                                : `${BASE_URL}/${item.image?.replace(/^\/+/, '')}`
+                                                        }
                                                         alt={item.name}
                                                         className="w-16 h-16 object-cover"
                                                     />

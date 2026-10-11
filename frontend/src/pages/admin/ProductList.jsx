@@ -77,7 +77,11 @@ const ProductList = () => {
                     {imageUrl && (
                         <div className="text-center mb-3">
                             <img 
-                                src={BASE_URL ? `${BASE_URL}${imageUrl}` : imageUrl} 
+                                src={
+                                    imageUrl?.startsWith('http')
+                                        ? imageUrl
+                                        : `${BASE_URL}/${imageUrl?.replace(/^\/+/, '')}`
+                                } 
                                 alt="product" 
                                 className="block mx-auto max-h-[200px]" 
                             />
