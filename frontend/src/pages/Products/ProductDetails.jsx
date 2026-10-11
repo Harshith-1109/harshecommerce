@@ -20,6 +20,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { BASE_URL } from "../../redux/constants";
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -87,7 +88,7 @@ const ProductDetails = () => {
           <div className="flex flex-wrap relative items-start justify-between mt-[2rem]">
             <div className="relative">
               <img
-                src={product.image}
+                src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
                 alt={product.name}
                 className="w-full xl:w-[45rem] lg:w-[40rem] md:w-[30rem] sm:w-[20rem] rounded-lg"
               />

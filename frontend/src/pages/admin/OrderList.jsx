@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { useGetOrdersQuery } from "../../redux/api/orderApiSlice";
+import { BASE_URL } from "../../redux/constants";
 
 const OrderList = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
@@ -30,14 +31,20 @@ const OrderList = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order) => (
+              {orders?.map((order) => (
                 <tr key={order._id} className="border-b">
                   <td className="p-2">
-                    <img
-                      src={order.orderItems[0].image}
-                      alt={order.orderItems[0].name}
-                      className="w-16 h-16 object-cover"
-                    />
+                    {order.orderItems && order.orderItems.length > 0 && (
+                      <img
+                        src={
+                          BASE_URL
+                            ? `${BASE_URL}${order.orderItems[0].image}`
+                            : order.orderItems[0].image
+                        }
+                        alt={order.orderItems[0].name}
+                        className="w-16 h-16 object-cover"
+                      />
+                    )}
                   </td>
                   <td className="p-2">{order._id}</td>
                   <td className="p-2">{order.user ? order.user.username : "N/A"}</td>

@@ -13,6 +13,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { BASE_URL } from "../../redux/constants";
 
 const Slider = SlickSlider.default || SlickSlider;
 
@@ -76,9 +77,8 @@ const ProductCarousel = () => {
                 countInStock,
               }) => (
                 <div key={_id} className="outline-none">
-                  {/* Changed object-cover to object-contain so full image shows without cropping */}
                   <img
-                    src={image}
+                    src={BASE_URL ? `${BASE_URL}${image}` : image}
                     alt={name}
                     className="w-full rounded-lg object-contain h-[30rem] bg-gray-100"
                   />

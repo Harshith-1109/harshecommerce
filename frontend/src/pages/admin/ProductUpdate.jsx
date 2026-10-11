@@ -9,6 +9,7 @@ import {
     useDeleteProductMutation,
 } from "../../redux/api/productApiSlice"
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
+import { BASE_URL } from "../../redux/constants";
 
 const ProductUpdate = () => {
     const params = useParams()
@@ -99,7 +100,7 @@ const ProductUpdate = () => {
 
             const { data } = await deleteProduct(params.id).unwrap()
             toast.success(`${data?.name || "Product"} is deleted`)
-            navigate("/admin/allproducts") // Fixed route path here
+            navigate("/admin/allproducts")
         } catch (error) {
             console.error(error)
             toast.error("Delete failed. Try again.")
@@ -116,7 +117,7 @@ const ProductUpdate = () => {
                     {imageUrl && (
                         <div className="text-center mb-3">
                             <img 
-                                src={imageUrl.startsWith('http') ? imageUrl : `http://localhost:5000${imageUrl}`} 
+                                src={imageUrl.startsWith('http') ? imageUrl : `${BASE_URL}${imageUrl}`} 
                                 alt="product" 
                                 className="block mx-auto max-h-[200px]" 
                             />

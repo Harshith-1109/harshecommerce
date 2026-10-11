@@ -7,6 +7,7 @@ import ProgressSteps from "../../components/ProgressSteps";
 import Loader from "../../components/Loader";
 import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
 import { clearCartItems } from "../../redux/features/cart/cartSlice";
+import { BASE_URL } from "../../redux/constants";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const PlaceOrder = () => {
                   <tr key={index} className="border-b">
                     <td className="p-2">
                       <img
-                        src={item.image}
+                        src={BASE_URL ? `${BASE_URL}${item.image}` : item.image}
                         alt={item.name}
                         className="w-16 h-16 object-cover"
                       />

@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BASE_URL } from "../../redux/constants";
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const ProductCard = ({ p }) => {
           </span>
           <img
             className="cursor-pointer w-full h-[180px] object-cover rounded-t-xl"
-            src={p?.image}
+            src={BASE_URL ? `${BASE_URL}${p?.image}` : p?.image}
             alt={p?.name}
           />
         </Link>

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
+import { BASE_URL } from "../redux/constants";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const Cart = () => {
               >
                 <div className="w-24 h-24">
                   <img
-                    src={item.image}
+                    src={BASE_URL ? `${BASE_URL}${item.image}` : item.image}
                     alt={item.name}
                     className="w-full h-full object-cover rounded"
                   />

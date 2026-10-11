@@ -9,6 +9,7 @@ import { useDeliverOrderMutation,
     useGetPaypalClientIdQuery,
     usePayOrderMutation,
 } from "../../redux/api/orderApiSlice"
+import { BASE_URL } from "../../redux/constants"
 import { useSelector } from "react-redux"
 
 const Order = () => {
@@ -139,7 +140,7 @@ const Order = () => {
                                             <tr key={index} className="border-b">
                                                 <td className="p-2">
                                                     <img
-                                                        src={item.image}
+                                                        src={BASE_URL ? `${BASE_URL}${item.image}` : item.image}
                                                         alt={item.name}
                                                         className="w-16 h-16 object-cover"
                                                     />

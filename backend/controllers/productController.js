@@ -23,7 +23,8 @@ const addProduct = asyncHandler(async (req, res) => {
                 return res.status(400).json({ error: "Brand is required" });
         }
 
-        // 2. Create a new product instance with fields from req.fields
+        // 2. Create a new 
+        // product instance with fields from req.fields
         const product = new Product({ ...req.fields });
 
         // 3. Handle image upload if provided via express-formidable

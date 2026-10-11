@@ -17,11 +17,11 @@ const Profile = () => {
   const [updateProfile, { isLoading: loadingUpdateProfile }] = useProfileMutation();
 
   useEffect(() => {
-    
-      setUsername(userInfo.username);
-      setEmail(userInfo.email);
-     
-  }, [userInfo.email,userInfo.username]);
+    if (userInfo) {
+      setUsername(userInfo.username || '');
+      setEmail(userInfo.email || '');
+    }
+  }, [userInfo]);
 
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const Profile = () => {
 
   return (
     <div className="container mx-auto p-4 mt-10">
-      <div className="flex justify-center align-center md:flex.no-wrap">
+      <div className="flex justify-center align-center md:flex-no-wrap">
         <div className="md:w-1/3 bg-gray-900 p-6 rounded-lg">
           <h2 className="text-2xl font-semibold text-white mb-4">Update Profile</h2>
 

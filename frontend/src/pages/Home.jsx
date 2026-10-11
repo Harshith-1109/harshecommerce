@@ -3,7 +3,7 @@ import { useGetProductsQuery } from "../redux/api/productApiSlice";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
 import Message from "../components/Message";
-import Product from "./Products/Product"; // Adjust path if needed
+import Product from "./Products/Product";
 
 const Home = () => {
   const { keyword } = useParams();

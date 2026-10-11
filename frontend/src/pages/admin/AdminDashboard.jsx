@@ -55,7 +55,7 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {orders.slice(0, 5).map((order) => (
+                {orders?.slice(0, 5).map((order) => (
                   <tr key={order._id} className="border-b">
                     <td className="p-2">{order._id}</td>
                     <td className="p-2">{order.user ? order.user.username : "N/A"}</td>

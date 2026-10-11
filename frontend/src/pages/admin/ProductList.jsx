@@ -7,6 +7,7 @@ import {
     useUploadProductImageMutation 
 } from "../../redux/api/productApiSlice"
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
+import { BASE_URL } from "../../redux/constants";
 import AdminMenu from "./AdminMenu";
 
 const ProductList = () => {
@@ -75,7 +76,11 @@ const ProductList = () => {
 
                     {imageUrl && (
                         <div className="text-center mb-3">
-                            <img src={imageUrl} alt="product" className="block mx-auto max-h-[200px]" />
+                            <img 
+                                src={BASE_URL ? `${BASE_URL}${imageUrl}` : imageUrl} 
+                                alt="product" 
+                                className="block mx-auto max-h-[200px]" 
+                            />
                         </div>
                     )}    
 

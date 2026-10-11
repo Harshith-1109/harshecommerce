@@ -1,12 +1,13 @@
 import { Link } from "react-router";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants";
 
 const SmallProduct = ({ product }) => {
   return (
     <div className="w-[20rem] ml-[2rem] p-3">
       <div className="relative">
         <img
-          src={product.image}
+          src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
           alt={product.name}
           className="h-auto w-full rounded"
         />
