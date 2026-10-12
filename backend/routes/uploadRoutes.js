@@ -1,24 +1,24 @@
-import path from 'path';
 import express from 'express';
 import multer from 'multer';
-import fs from 'fs';
+import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
 const router = express.Router();
 
-// 🔑 Ensure the uploads directory exists on startup/runtime
-const uploadDir = path.join(path.resolve(), 'uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
+// Configure Cloudinary credentials from environment variables
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir);
+// Set up Cloudinary storage for Multer
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'ecommerce_uploads',
+        allowed_formats: ['jpg', 'jpeg', 'png', 'webp'],
     },
-    filename: (req, file, cb) => {
-        const extname = path.extname(file.originalname);
-        cb(null, `${file.fieldname}-${Date.now()}${extname}`);
-    }
 });
 
 const fileFilter = (req, file, cb) => {
@@ -39,10 +39,10 @@ router.post('/', (req, res) => {
         } 
         
         if (req.file) {
-            // 🔑 Return a clean relative path starting with /uploads/
+            // Cloudinary returns the full permanent secure URL in req.file.path
             return res.status(200).send({
                 message: "Image uploaded successfully",
-                image: `/uploads/${req.file.filename}`,
+                image: req.file.path,
             });
         } else {
             return res.status(400).send({ message: "No image file provided" });
