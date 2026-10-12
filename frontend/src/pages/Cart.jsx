@@ -44,11 +44,15 @@ const Cart = () => {
                 className="flex items-center justify-between border-b py-4"
               >
                 <div className="w-24 h-24">
-                  <img
-                    src={BASE_URL ? `${BASE_URL}${item.image}` : item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover rounded"
-                  />
+                 <img
+  src={
+    item.image?.startsWith('http')
+      ? item.image
+      : `${BASE_URL}/${item.image?.replace(/^\/+/, '')}`
+  }
+  alt={item.name}
+  className="w-full h-full object-cover rounded"
+/>
                 </div>
 
                 <div className="flex-1 ml-4">
