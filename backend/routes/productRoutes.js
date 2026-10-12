@@ -16,12 +16,11 @@ import {
 
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 import checkId from "../middlewares/checkId.js";
-import upload from "../middlewares/uploadMiddleware.js"; // Use your multer/cloudinary middleware here
 
-// 1. Root route - use your upload middleware instead of formidable
+// 1. Root route - accepts JSON payload containing the Cloudinary image URL
 router.route('/')
 .get(fetchProducts)
-.post(authenticate, authorizeAdmin, upload.single('image'), addProduct);
+.post(authenticate, authorizeAdmin, addProduct);
 
 // 2. STATIC ROUTE MUST COME BEFORE /:id
 router.route('/allproducts').get(fetchAllProducts);
@@ -34,7 +33,7 @@ router.route('/reviews/:id').post(authenticate, checkId, addProductReview);
 // 3. DYNAMIC ROUTE MUST COME LAST
 router.route('/:id')
     .get(fetchProductById)
-    .put(authenticate, authorizeAdmin, upload.single('image'), updateProductDetails)
+    .put(authenticate, authorizeAdmin, updateProductDetails)
     .delete(authenticate, authorizeAdmin, removeProduct);
 
 router.route('/filtered-products').post(filterProducts);
