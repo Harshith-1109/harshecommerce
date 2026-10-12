@@ -69,7 +69,7 @@ const ProductUpdate = () => {
         e.preventDefault()
         try {
             const formData = new FormData()
-            formData.append("image", image)
+            formData.append("image", imageUrl)
             formData.append("name", name)
             formData.append("description", description)
             formData.append("price", price)
