@@ -88,10 +88,14 @@ const ProductDetails = () => {
           <div className="flex flex-wrap relative items-start justify-between mt-[2rem]">
             <div className="relative">
               <img
-                src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
-                alt={product.name}
-                className="w-full xl:w-[45rem] lg:w-[40rem] md:w-[30rem] sm:w-[20rem] rounded-lg"
-              />
+  src={
+    product.image?.startsWith('http')
+      ? product.image
+      : `${BASE_URL}/${product.image?.replace(/^\/+/, '')}`
+  }
+  alt={product.name}
+  className="w-full xl:w-[45rem] lg:w-[40rem] md:w-[30rem] sm:w-[20rem] rounded-lg"
+/>
               <HeartIcon product={product} />
             </div>
 
