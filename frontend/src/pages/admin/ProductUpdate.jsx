@@ -65,20 +65,21 @@ const ProductUpdate = () => {
         }
     }
 
-    const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const formData = new FormData()
-            formData.append("image", imageUrl)
-            formData.append("name", name)
-            formData.append("description", description)
-            formData.append("price", price)
-            formData.append("category", category)
-            formData.append("quantity", quantity)
-            formData.append("brand", brand)
-            formData.append("countInStock", stock)
+            const productData = {
+                image: imageUrl,
+                name,
+                description,
+                price,
+                category,
+                quantity,
+                brand,
+                countInStock: stock,
+            };
 
-            const res = await updateProduct({ productId: params.id, formData }).unwrap()
+            await updateProduct({ productId: params.id, formData: productData }).unwrap()
             
             toast.success("Product successfully updated")
             navigate("/admin/allproducts")

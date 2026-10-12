@@ -40,20 +40,21 @@ const ProductList = () => {
         }
     };
 
-    const handleSubmit = async (e) => {
+   const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const productData = new FormData();
-            productData.append('image', imageUrl);
-            productData.append('name', name);
-            productData.append('description', description);
-            productData.append('price', price);
-            productData.append('category', category);
-            productData.append('quantity', quantity);
-            productData.append('brand', brand);
-            productData.append('countInStock', stock);
+            const productData = {
+                image: imageUrl,
+                name,
+                description,
+                price,
+                category,
+                quantity,
+                brand,
+                countInStock: stock,
+            };
 
-            const { data } = await createProduct(productData);
+            const data = await createProduct(productData).unwrap();
 
             if (data.error) {
                 toast.error("Product create failed. Try again.");
@@ -63,7 +64,7 @@ const ProductList = () => {
             }
         } catch (error) {
             console.error(error);
-            toast.error("Product creation failed. Try again.");
+            toast.error(error?.data?.error || error?.data?.message || "Product creation failed. Try again.");
         }
     };
 
