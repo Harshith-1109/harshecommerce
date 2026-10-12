@@ -78,10 +78,14 @@ const ProductCarousel = () => {
               }) => (
                 <div key={_id} className="outline-none">
                   <img
-                    src={BASE_URL ? `${BASE_URL}${image}` : image}
-                    alt={name}
-                    className="w-full rounded-lg object-contain h-[30rem] bg-gray-100"
-                  />
+  src={
+    image?.startsWith('http')
+      ? image
+      : `${BASE_URL}/${image?.replace(/^\/+/, '')}`
+  }
+  alt={name}
+  className="w-full rounded-lg object-contain h-[30rem] bg-gray-100"
+/>
 
                   <div className="flex justify-between w-[20rem] mt-4">
                     <div className="one">

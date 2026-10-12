@@ -7,10 +7,14 @@ const SmallProduct = ({ product }) => {
     <div className="w-[20rem] ml-[2rem] p-3">
       <div className="relative">
         <img
-          src={BASE_URL ? `${BASE_URL}${product.image}` : product.image}
-          alt={product.name}
-          className="h-auto w-full rounded"
-        />
+  src={
+    product.image?.startsWith('http')
+      ? product.image
+      : `${BASE_URL}/${product.image?.replace(/^\/+/, '')}`
+  }
+  alt={product.name}
+  className="h-auto w-full rounded"
+/>
         <HeartIcon product={product}/>
 
         <div className="p-4">
